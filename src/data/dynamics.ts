@@ -458,8 +458,20 @@ const bonusDynamics: Omit<Dynamic, 'id'>[] = [
   }
 ];
 
-const actionVerbs = ["Analisar", "Construir", "Debater", "Inspecionar", "Simular", "Mapear", "Identificar", "Resolver", "Organizar", "Apresentar", "Investigar", "Classificar", "Desvendar", "Proteger", "Avaliar"];
-const formats = ["em duplas", "em pequenos grupos", "em círculo", "individualmente", "em duas grandes equipes", "em formato de plenária"];
+const actionVerbs = [
+  "Analisar", "Construir", "Debater", "Inspecionar", "Simular", "Mapear", "Identificar", "Resolver", "Organizar", 
+  "Apresentar", "Investigar", "Classificar", "Desvendar", "Proteger", "Avaliar", "Demonstrar", "Corrigir", 
+  "Prever", "Mitigar", "Comunicar", "Liderar", "Auditar", "Testar", "Sinalizar", "Escalar", "Previnir",
+  "Monitorar", "Relatar", "Treinar", "Verificar", "Antecipar", "Neutralizar", "Sustentar", "Engajar"
+];
+
+const formats = [
+  "em duplas", "em pequenos grupos", "em círculo", "individualmente", "em duas grandes equipes", 
+  "em formato de plenária", "em formato de competição", "em uma linha de frente simulada", 
+  "em rodízio de estações", "através de uma caminhada pelo setor", "em formato de júri simulado",
+  "em uma dinâmica de 'aquário'", "através de um 'role-play' rápido", "em formato de quiz relâmpago"
+];
+
 const materialsPool = [
   ["Post-its", "Canetões", "Quadro branco"],
   ["Vendas para os olhos", "Tampões de ouvido", "Luvas grossas"],
@@ -470,7 +482,23 @@ const materialsPool = [
   ["Fotos do ambiente de trabalho", "Projetor", "Laser pointer"],
   ["EPIs diversos (novos e danificados)", "Caixa de papelão"],
   ["Quebra-cabeça de segurança", "Brindes simples"],
-  ["Cadeiras", "Música de fundo", "Apito"]
+  ["Cadeiras", "Música de fundo", "Apito"],
+  ["Extintores vazios", "Cones", "Fita zebrada"],
+  ["Rádios comunicadores", "Lanternas", "Mapas de risco"],
+  ["Colete refletivo", "Capacete de cores diferentes", "Prancheta eletrônica"]
+];
+
+const overviewTemplates = [
+  (verb: string, theme: string, format: string) => `Esta atividade desafia os participantes a ${verb.toLowerCase()} cenários de ${theme} enquanto trabalham ${format}. O foco é transformar a teoria em uma prática instintiva.`,
+  (verb: string, theme: string, format: string) => `Utilizando o formato ${format}, o grupo deverá ${verb.toLowerCase()} os principais pontos críticos de ${theme}, promovendo uma cultura de vigilância constante.`,
+  (verb: string, theme: string, format: string) => `Uma imersão prática onde ${format} os colaboradores precisam ${verb.toLowerCase()} situações reais de ${theme} para evitar falhas operacionais.`,
+  (verb: string, theme: string, format: string) => `Dinâmica focada em agilidade mental para ${verb.toLowerCase()} riscos de ${theme}. A interação ${format} ajuda na fixação do protocolo de segurança.`,
+  (verb: string, theme: string, format: string) => `Os participantes são colocados à prova para ${verb.toLowerCase()} como as decisões sobre ${theme} impactam o coletivo, trabalhando ${format}.`,
+  (verb: string, theme: string, format: string) => `Nesta proposta ${format}, o objetivo central é ${verb.toLowerCase()} a percepção de perigo em relação a ${theme}, usando exemplos do cotidiano.`,
+  (verb: string, theme: string, format: string) => `Através de uma abordagem ${format}, vamos ${verb.toLowerCase()} as barreiras que impedem a segurança total em ${theme}.`,
+  (verb: string, theme: string, format: string) => `Uma simulação tática onde ${format} a equipe deve ${verb.toLowerCase()} protocolos de ${theme} sob condições de tempo limitado.`,
+  (verb: string, theme: string, format: string) => `Exercício de liderança e comunicação para ${verb.toLowerCase()} a conformidade com as regras de ${theme}, organizado ${format}.`,
+  (verb: string, theme: string, format: string) => `Workshop interativo para ${verb.toLowerCase()} e documentar melhorias no processo de ${theme}, executado ${format}.`
 ];
 
 const stepTemplates = [
@@ -508,6 +536,55 @@ const stepTemplates = [
     `Os demais devem intervir imediatamente, usando a abordagem correta.`,
     `Troque os papéis para que vários possam praticar a intervenção.`,
     `Reforce a importância do feedback de segurança entre colegas.`
+  ],
+  (theme: string, format: string) => [
+    `Crie um "circuito de inspeção" onde os participantes ${format} devem passar.`,
+    `Em cada estação, eles precisam identificar um erro de ${theme}.`,
+    `Anote quem consegue identificar todos os desvios no menor tempo.`,
+    `Reúna o grupo para mostrar o que passou despercebido.`,
+    `Finalize com a meta de "zero desvios" para o turno de trabalho.`
+  ],
+  (theme: string, format: string) => [
+    `Inicie um debate ${format} sobre as maiores dificuldades em lidar com ${theme}.`,
+    `Peça que listem os "atalhos" perigosos que as pessoas costumam tomar.`,
+    `Para cada atalho, o grupo deve propor uma alternativa segura e viável.`,
+    `Crie um compromisso público assinado por todos sobre essas melhorias.`,
+    `O facilitador valida as propostas conforme as normas vigentes.`
+  ],
+  (theme: string, format: string) => [
+    `Sorteie papéis de "vítima", "socorrista" e "observador" ${format}.`,
+    `Simule um incidente de ${theme} e peça que ajam conforme o plano de emergência.`,
+    `Os observadores devem anotar falhas na comunicação ou no procedimento.`,
+    `Debata os pontos de melhoria identificados pelos observadores.`,
+    `Repita a cena corrigindo os erros apontados.`
+  ],
+  (theme: string, format: string) => [
+    `Distribua imagens de diferentes ambientes de trabalho ${format}.`,
+    `Os participantes devem desenhar o "mapa de calor" dos riscos de ${theme}.`,
+    `Compare os mapas criados pelos diferentes grupos.`,
+    `Discuta por que alguns riscos são mais visíveis para uns do que para outros.`,
+    `Crie um mapa mestre com as percepções de todos.`
+  ],
+  (theme: string, format: string) => [
+    `Realize um "júri simulado" ${format} para julgar um caso fictício de ${theme}.`,
+    `Um grupo defende o procedimento, outro aponta a falha e um terceiro julga.`,
+    `O objetivo é entender as responsabilidades legais e éticas.`,
+    `O facilitador atua como juiz técnico, trazendo a norma real.`,
+    `Conclua com a importância de seguir o padrão para proteção de todos.`
+  ],
+  (theme: string, format: string) => [
+    `Peça que cada participante ${format} escreva um "quase-acidente" de ${theme} que já viu.`,
+    `Coloque todos os relatos em uma urna e sorteie alguns para análise.`,
+    `O grupo deve propor como aquele quase-acidente poderia ter sido evitado.`,
+    `Transforme as soluções em uma lista de "lições aprendidas".`,
+    `Exponha essa lista no mural da empresa.`
+  ],
+  (theme: string, format: string) => [
+    `Organize uma "caça ao tesouro" ${format} focada em itens de segurança de ${theme}.`,
+    `Os participantes devem encontrar e validar o estado de conservação de itens reais.`,
+    `Cada item encontrado deve ser registrado com uma breve observação técnica.`,
+    `Vence o grupo que encontrar e avaliar corretamente o maior número de itens.`,
+    `O facilitador revisa os registros e premia a precisão técnica.`
   ]
 ];
 
@@ -519,7 +596,11 @@ const tipTemplates = [
   "Grave um pequeno vídeo da dinâmica (com permissão) para usar no próximo DDS.",
   "Leve brindes simples, como bombons, para premiar as melhores participações.",
   "Adapte a linguagem para que seja acessível a todos os níveis de escolaridade.",
-  "Seja rigoroso com o tempo para não perder a atenção do grupo."
+  "Seja rigoroso com o tempo para não perder a atenção do grupo.",
+  "Tente realizar a dinâmica no próprio posto de trabalho para maior realismo.",
+  "Se houver discordância técnica, consulte o manual da NR correspondente na hora.",
+  "Foque na solução e não apenas no problema para manter o engajamento alto.",
+  "Use o humor com cautela para tornar o aprendizado mais leve sem perder a seriedade."
 ];
 
 export const dynamics: Dynamic[] = [];
@@ -564,6 +645,7 @@ areasConfig.forEach((area) => {
     const format = getRandomItem(formats);
     const materials = getRandomItem(materialsPool);
     const stepTemplate = getRandomItem(stepTemplates);
+    const overviewTemplate = getRandomItem(overviewTemplates);
     const tip = getRandomItem(tipTemplates);
     
     const diffs = ["Iniciante", "Intermediário", "Avançado"];
@@ -573,12 +655,24 @@ areasConfig.forEach((area) => {
     const duration = durations[Math.floor(rand() * 4)];
 
     // Generate unique title
-    const titleAdjectives = ["Ativo", "Dinâmico", "em Foco", "na Prática", "Descomplicado", "Seguro", "Extremo", "Colaborativo"];
-    const title = `${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)} ${getRandomItem(titleAdjectives)}`;
+    const titleAdjectives = ["Ativo", "Dinâmico", "em Foco", "na Prática", "Descomplicado", "Seguro", "Extremo", "Colaborativo", "Total", "Consciente", "Efetivo", "de Impacto", "Real", "Urgente", "Estratégico", "Prático", "Inovador"];
+    const titlePatterns = [
+      `${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)} ${getRandomItem(titleAdjectives)}`,
+      `Desafio: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Operação ${getRandomItem(titleAdjectives)}: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Protocolo ${getRandomItem(titleAdjectives)} - ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `${theme.charAt(0).toUpperCase() + theme.slice(1)}: Ação ${getRandomItem(titleAdjectives)}`,
+      `Missão ${getRandomItem(titleAdjectives)}: ${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Workshop ${getRandomItem(titleAdjectives)} sobre ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Laboratório de ${theme.charAt(0).toUpperCase() + theme.slice(1)} ${getRandomItem(titleAdjectives)}`,
+      `Circuito ${getRandomItem(titleAdjectives)} de ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Radar ${getRandomItem(titleAdjectives)}: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`
+    ];
+    const title = getRandomItem(titlePatterns);
 
     const focus = `Desenvolver habilidades de ${verb.toLowerCase()} em situações de ${theme}.`;
     
-    const overview = `Nesta dinâmica, os participantes irão trabalhar ${format} com o objetivo de ${verb.toLowerCase()} questões relacionadas a ${theme}. A atividade promove reflexão prática e engajamento.`;
+    const overview = overviewTemplate(verb, theme, format);
 
     dynamics.push({
       id: idCounter++,
