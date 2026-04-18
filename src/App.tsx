@@ -4,10 +4,11 @@
  */
 
 import React, { useState, useMemo } from 'react';
-import { Filter } from 'lucide-react';
+import { Filter, Download } from 'lucide-react';
 import { dynamics, Dynamic } from './data/dynamics';
 import { Card } from './components/Card';
 import { Modal } from './components/Modal';
+import { downloadAllDynamicsPDF } from './services/pdfService';
 
 const areas = [
   "Todas",
@@ -25,7 +26,7 @@ export default function App() {
   const [selectedDynamic, setSelectedDynamic] = useState<Dynamic | null>(null);
 
   const filteredDynamics = useMemo(() => {
-    if (selectedArea === "Todas") return dynamics;
+    if (selectedArea === "Todas") return dynamics.filter(d => d.area !== "Vídeos");
     return dynamics.filter(d => d.area === selectedArea);
   }, [selectedArea]);
 
@@ -53,7 +54,15 @@ export default function App() {
               +250 Dinâmicas <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">de Segurança do Trabalho</span>
             </h1>
-            <div className="h-1 w-16 bg-emerald-500 mx-auto rounded-full mb-4 shadow-[0_0_20px_rgba(16,185,129,0.5)]"></div>
+            <div className="h-1 w-16 bg-emerald-500 mx-auto rounded-full mb-8 shadow-[0_0_20px_rgba(16,185,129,0.5)]"></div>
+            
+            <button 
+              onClick={() => downloadAllDynamicsPDF(dynamics.filter(d => d.area !== "Vídeos"))}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-emerald-950 rounded-2xl font-display font-black text-sm uppercase tracking-widest shadow-xl shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95 group"
+            >
+              <Download className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
+              Baixar Acervo Completo (PDF)
+            </button>
           </div>
         </div>
       </header>

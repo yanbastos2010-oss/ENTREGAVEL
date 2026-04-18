@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { X, Clock, Target, BarChart, Package, Eye, ListOrdered, Lightbulb } from 'lucide-react';
+import { X, Clock, Target, BarChart, Package, Eye, ListOrdered, Lightbulb, Download } from 'lucide-react';
 import { Dynamic } from '../data/dynamics';
+import { downloadDynamicPDF } from '../services/pdfService';
 
 interface ModalProps {
   dynamic: Dynamic;
@@ -76,6 +77,16 @@ export function Modal({ dynamic, onClose }: ModalProps) {
                   </h2>
                 </div>
               </div>
+
+              {dynamic.area !== "Vídeos" && (
+                <button 
+                  onClick={() => downloadDynamicPDF(dynamic)}
+                  className="w-full mb-8 py-4 bg-slate-900 text-white rounded-2xl font-display font-black text-xs uppercase tracking-[0.2em] hover:bg-slate-800 transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-slate-200 flex items-center justify-center gap-3"
+                >
+                  <Download className="w-4 h-4" />
+                  BAIXAR EM PDF
+                </button>
+              )}
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
                 <div className="bg-slate-50 p-4 rounded-[1.5rem] border border-slate-100 shadow-sm transition-colors duration-500">

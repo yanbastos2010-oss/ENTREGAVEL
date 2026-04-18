@@ -459,133 +459,16 @@ const bonusDynamics: Omit<Dynamic, 'id'>[] = [
 ];
 
 const actionVerbs = [
-  "Analisar", "Construir", "Debater", "Inspecionar", "Simular", "Mapear", "Identificar", "Resolver", "Organizar", 
-  "Apresentar", "Investigar", "Classificar", "Desvendar", "Proteger", "Avaliar", "Demonstrar", "Corrigir", 
-  "Prever", "Mitigar", "Comunicar", "Liderar", "Auditar", "Testar", "Sinalizar", "Escalar", "Previnir",
-  "Monitorar", "Relatar", "Treinar", "Verificar", "Antecipar", "Neutralizar", "Sustentar", "Engajar"
+  "Analisar", "Inspecionar", "Mapear", "Distinguir", "Estruturar",
+  "Corrigir", "Mitigar", "Comunicar", "Auditar", "Testar", "Sinalizar", "Escalar", "Previnir",
+  "Relatar", "Antecipar", "Neutralizar", "Engajar", "Reconhecer", "Avaliar", "Diagnosticar", 
+  "Prever", "Intervir", "Reforçar", "Executar", "Validar", "Questionar", "Sugerir", "Implementar"
 ];
 
 const formats = [
   "em duplas", "em pequenos grupos", "em círculo", "individualmente", "em duas grandes equipes", 
   "em formato de plenária", "em formato de competição", "em uma linha de frente simulada", 
-  "em rodízio de estações", "através de uma caminhada pelo setor", "em formato de júri simulado",
-  "em uma dinâmica de 'aquário'", "através de um 'role-play' rápido", "em formato de quiz relâmpago"
-];
-
-const materialsPool = [
-  ["Post-its", "Canetões", "Quadro branco"],
-  ["Vendas para os olhos", "Tampões de ouvido", "Luvas grossas"],
-  ["Cartões impressos", "Envelopes", "Cronômetro"],
-  ["Sucata (caixas, garrafas)", "Fita crepe", "Tesoura"],
-  ["Barbante", "Bolas de plástico", "Balões"],
-  ["Checklists impressos", "Pranchetas", "Canetas"],
-  ["Fotos do ambiente de trabalho", "Projetor", "Laser pointer"],
-  ["EPIs diversos (novos e danificados)", "Caixa de papelão"],
-  ["Quebra-cabeça de segurança", "Brindes simples"],
-  ["Cadeiras", "Música de fundo", "Apito"],
-  ["Extintores vazios", "Cones", "Fita zebrada"],
-  ["Rádios comunicadores", "Lanternas", "Mapas de risco"],
-  ["Colete refletivo", "Capacete de cores diferentes", "Prancheta eletrônica"]
-];
-
-const overviewTemplates = [
-  (verb: string, theme: string, format: string) => `Esta atividade desafia os participantes a ${verb.toLowerCase()} cenários de ${theme} enquanto trabalham ${format}. O foco é transformar a teoria em uma prática instintiva.`,
-  (verb: string, theme: string, format: string) => `Utilizando o formato ${format}, o grupo deverá ${verb.toLowerCase()} os principais pontos críticos de ${theme}, promovendo uma cultura de vigilância constante.`,
-  (verb: string, theme: string, format: string) => `Uma imersão prática onde ${format} os colaboradores precisam ${verb.toLowerCase()} situações reais de ${theme} para evitar falhas operacionais.`,
-  (verb: string, theme: string, format: string) => `Dinâmica focada em agilidade mental para ${verb.toLowerCase()} riscos de ${theme}. A interação ${format} ajuda na fixação do protocolo de segurança.`,
-  (verb: string, theme: string, format: string) => `Os participantes são colocados à prova para ${verb.toLowerCase()} como as decisões sobre ${theme} impactam o coletivo, trabalhando ${format}.`,
-  (verb: string, theme: string, format: string) => `Nesta proposta ${format}, o objetivo central é ${verb.toLowerCase()} a percepção de perigo em relação a ${theme}, usando exemplos do cotidiano.`,
-  (verb: string, theme: string, format: string) => `Através de uma abordagem ${format}, vamos ${verb.toLowerCase()} as barreiras que impedem a segurança total em ${theme}.`,
-  (verb: string, theme: string, format: string) => `Uma simulação tática onde ${format} a equipe deve ${verb.toLowerCase()} protocolos de ${theme} sob condições de tempo limitado.`,
-  (verb: string, theme: string, format: string) => `Exercício de liderança e comunicação para ${verb.toLowerCase()} a conformidade com as regras de ${theme}, organizado ${format}.`,
-  (verb: string, theme: string, format: string) => `Workshop interativo para ${verb.toLowerCase()} e documentar melhorias no processo de ${theme}, executado ${format}.`
-];
-
-const stepTemplates = [
-  (theme: string, format: string) => [
-    `Divida os participantes ${format}.`,
-    `Apresente um cenário desafiador envolvendo ${theme}.`,
-    `Dê 10 minutos para que discutam e encontrem 3 soluções.`,
-    `Cada grupo apresenta suas conclusões para os demais.`,
-    `O facilitador consolida os aprendizados e conecta com a rotina.`
-  ],
-  (theme: string, format: string) => [
-    `Organize a equipe ${format}.`,
-    `Distribua os materiais e explique as regras do desafio de ${theme}.`,
-    `Inicie o cronômetro. Os participantes devem agir rapidamente.`,
-    `Pause a dinâmica na metade para inserir um "fator surpresa" ou dificuldade.`,
-    `Ao final, debata como a pressão afetou a segurança na execução.`
-  ],
-  (theme: string, format: string) => [
-    `Posicione todos ${format}.`,
-    `Entregue cartões com situações reais de ${theme}.`,
-    `Peça que classifiquem as situações em "Seguro", "Atenção" ou "Perigo".`,
-    `Promova um debate sobre as situações que geraram discordância.`,
-    `Feche a dinâmica reforçando o procedimento correto da empresa.`
-  ],
-  (theme: string, format: string) => [
-    `Forme equipes e distribua os itens necessários.`,
-    `O objetivo é construir uma barreira ou solução física para ${theme}.`,
-    `Eles têm 15 minutos para planejar e executar a montagem.`,
-    `Teste as soluções criadas na frente de todos.`,
-    `Discuta a importância do planejamento e da criatividade na prevenção.`
-  ],
-  (theme: string, format: string) => [
-    `Peça que os participantes se organizem ${format}.`,
-    `Um voluntário deve simular uma atitude incorreta relacionada a ${theme}.`,
-    `Os demais devem intervir imediatamente, usando a abordagem correta.`,
-    `Troque os papéis para que vários possam praticar a intervenção.`,
-    `Reforce a importância do feedback de segurança entre colegas.`
-  ],
-  (theme: string, format: string) => [
-    `Crie um "circuito de inspeção" onde os participantes ${format} devem passar.`,
-    `Em cada estação, eles precisam identificar um erro de ${theme}.`,
-    `Anote quem consegue identificar todos os desvios no menor tempo.`,
-    `Reúna o grupo para mostrar o que passou despercebido.`,
-    `Finalize com a meta de "zero desvios" para o turno de trabalho.`
-  ],
-  (theme: string, format: string) => [
-    `Inicie um debate ${format} sobre as maiores dificuldades em lidar com ${theme}.`,
-    `Peça que listem os "atalhos" perigosos que as pessoas costumam tomar.`,
-    `Para cada atalho, o grupo deve propor uma alternativa segura e viável.`,
-    `Crie um compromisso público assinado por todos sobre essas melhorias.`,
-    `O facilitador valida as propostas conforme as normas vigentes.`
-  ],
-  (theme: string, format: string) => [
-    `Sorteie papéis de "vítima", "socorrista" e "observador" ${format}.`,
-    `Simule um incidente de ${theme} e peça que ajam conforme o plano de emergência.`,
-    `Os observadores devem anotar falhas na comunicação ou no procedimento.`,
-    `Debata os pontos de melhoria identificados pelos observadores.`,
-    `Repita a cena corrigindo os erros apontados.`
-  ],
-  (theme: string, format: string) => [
-    `Distribua imagens de diferentes ambientes de trabalho ${format}.`,
-    `Os participantes devem desenhar o "mapa de calor" dos riscos de ${theme}.`,
-    `Compare os mapas criados pelos diferentes grupos.`,
-    `Discuta por que alguns riscos são mais visíveis para uns do que para outros.`,
-    `Crie um mapa mestre com as percepções de todos.`
-  ],
-  (theme: string, format: string) => [
-    `Realize um "júri simulado" ${format} para julgar um caso fictício de ${theme}.`,
-    `Um grupo defende o procedimento, outro aponta a falha e um terceiro julga.`,
-    `O objetivo é entender as responsabilidades legais e éticas.`,
-    `O facilitador atua como juiz técnico, trazendo a norma real.`,
-    `Conclua com a importância de seguir o padrão para proteção de todos.`
-  ],
-  (theme: string, format: string) => [
-    `Peça que cada participante ${format} escreva um "quase-acidente" de ${theme} que já viu.`,
-    `Coloque todos os relatos em uma urna e sorteie alguns para análise.`,
-    `O grupo deve propor como aquele quase-acidente poderia ter sido evitado.`,
-    `Transforme as soluções em uma lista de "lições aprendidas".`,
-    `Exponha essa lista no mural da empresa.`
-  ],
-  (theme: string, format: string) => [
-    `Organize uma "caça ao tesouro" ${format} focada em itens de segurança de ${theme}.`,
-    `Os participantes devem encontrar e validar o estado de conservação de itens reais.`,
-    `Cada item encontrado deve ser registrado com uma breve observação técnica.`,
-    `Vence o grupo que encontrar e avaliar corretamente o maior número de itens.`,
-    `O facilitador revisa os registros e premia a precisão técnica.`
-  ]
+  "em rodízio de estações", "através de uma caminhada pelo setor"
 ];
 
 const tipTemplates = [
@@ -598,10 +481,104 @@ const tipTemplates = [
   "Adapte a linguagem para que seja acessível a todos os níveis de escolaridade.",
   "Seja rigoroso com o tempo para não perder a atenção do grupo.",
   "Tente realizar a dinâmica no próprio posto de trabalho para maior realismo.",
-  "Se houver discordância técnica, consulte o manual da NR correspondente na hora.",
-  "Foque na solução e não apenas no problema para manter o engajamento alto.",
-  "Use o humor com cautela para tornar o aprendizado mais leve sem perder a seriedade."
+  "Se houver discordância técnica, consulte o manual da NR correspondente na hora."
 ];
+
+const materialsPool = [
+  ["Post-its", "Canetões", "Quadro branco"],
+  ["Vendas para os olhos", "Tampões de ouvido", "Luvas grossas"],
+  ["Cartões impressos", "Envelopes", "Cronômetro"],
+  ["Sucata (caixas, garrafas)", "Fita crepe", "Tesoura"],
+  ["Barbante", "Bolas de plástico", "Balões"],
+  ["Checklists impressos", "Pranchetas", "Canetas"],
+  ["Fotos do ambiente de trabalho", "Projetor", "Laser pointer"],
+  ["EPIs diversos (novos e danificados)", "Caixa de papelão"],
+  ["Quebra-cabeça de segurança", "Brindes simples"],
+  ["Cadeiras", "Música de fundo", "Apito"]
+];
+
+const activityConcepts = [
+  { 
+    name: "Espelho", 
+    logic: "Reflexão sobre comportamento seguro através da observação mútua e feedback direto.",
+    steps: (t: string, f: string) => [
+      `Posicione o grupo ${f}.`,
+      `Um participante demonstra como realiza uma tarefa de ${t}.`,
+      `O outro atua como seu 'espelho de segurança', imitando os movimentos mas parando sempre que notar um desvio.`,
+      `Eles trocam de papéis para sentir a diferença entre observar e ser observado.`,
+      `Feche com um compromisso de ajuda mútua no posto de trabalho.`
+    ]
+  },
+  { 
+    name: "Cápsula", 
+    logic: "Previsão de consequências futuras a partir de decisões tomadas no presente.",
+    steps: (t: string, f: string) => [
+      `Reúna a equipe ${f} e apresente uma situação crítica de ${t}.`,
+      `Peça que escrevam anonimamente em um papel o 'atalho' que mais gostariam de pegar naquela situação.`,
+      `Coloque todos em uma cápsula (caixa) e retire um por um.`,
+      `Para cada atalho, discuta qual seria a consequência dele daqui a 5 anos (saúde, família, carreira).`,
+      `Enterre os atalhos e foque na solução definitiva.`
+    ]
+  },
+  { 
+    name: "Circuito", 
+    logic: "Treinamento tátil e dinâmico através de estações práticas e objetivas.",
+    steps: (t: string, f: string) => [
+      `Crie 3 estações de trabalho rápidas focadas em ${t}.`,
+      `Os participantes devem passar ${f} por cada estação em menos de 2 minutos.`,
+      `Em cada ponto, há um desafio físico: encontrar um defeito, sinalizar um risco ou escolher o EPI.`,
+      `Ao final do percurso, verifique quem completou a rota com 100% de precisão.`,
+      `Debata a importância da velocidade versus atenção plena.`
+    ]
+  },
+  { 
+    name: "Veredito", 
+    logic: "Análise crítica de responsabilidades e consequências legais/humanas de acidentes.",
+    steps: (t: string, f: string) => [
+      `Apresente um caso real ou fictício de acidente envolvendo ${t}.`,
+      `Organize um júri ${f} onde um grupo aponta a falha do sistema e outro a falha humana.`,
+      `Um terceiro grupo deve atuar como juiz e propor a sentença (melhoria ou punição).`,
+      `O facilitador intervém trazendo o que a norma diz sobre o caso.`,
+      `Conclua mostrando que no acidente não existem vencedores, apenas lições.`
+    ]
+  },
+  { 
+    name: "Radar", 
+    logic: "Ampliação da percepção visual para detecção precoce de condições inseguras.",
+    steps: (t: string, f: string) => [
+      `Saia para uma caminhada ${f} pela área de trabalho.`,
+      `Eles têm o 'Radar SST' ativado: devem encontrar 5 coisas que poderiam levar a um problema de ${t}.`,
+      `Cada achado deve ser classificado em risco baixo, médio ou alto.`,
+      `Retorne à sala e discuta como o radar deve permanecer ligado 24h.`,
+      `Premie o olhar mais clínico da equipe.`
+    ]
+  },
+  {
+    name: "Elo",
+    logic: "Fortalecimento da cultura de cuidado mútuo e a força da equipe na prevenção.",
+    steps: (t: string, f: string) => [
+      `Forme uma corrente humana ${f}.`,
+      `Cada participante recebe um desafio de ${t} para resolver.`,
+      `Se um falhar, a corrente se rompe; se o vizinho ajudar, o elo se fortalece.`,
+      `A atividade demonstra que a segurança individual depende do apoio do colega.`,
+      `Finalize com um aperto de mão simbolizando a rede de proteção.`
+    ]
+  },
+  {
+    name: "Controle",
+    logic: "Domínio técnico sobre ferramentas e equipamentos de proteção.",
+    steps: (t: string, f: string) => [
+      `Disponibilize os equipamentos relacionados a ${t}.`,
+      `Os participantes ${f} devem realizar a inspeção pré-uso completa no menor tempo possível.`,
+      `O facilitador insere 'armadilhas' (peças soltas, validades vencidas).`,
+      `Analise o que foi esquecido durante a pressão do cronômetro.`,
+      `Reforce o checklist padrão da empresa para evitar omissões.`
+    ]
+  }
+];
+
+const durations = ["10 min", "15 min", "20 min", "25 min", "30 min"];
+const difficulties = ["Iniciante", "Intermediário", "Avançado"];
 
 export const dynamics: Dynamic[] = [];
 
@@ -615,19 +592,21 @@ function mulberry32(a: number) {
   }
 }
 
-const rand = mulberry32(12345);
+const rand = mulberry32(54321);
 
 function getRandomItem<T>(arr: T[]): T {
   return arr[Math.floor(rand() * arr.length)];
 }
 
+const usedTitles = new Set<string>();
+
 let idCounter = 1;
 
-// Generate exactly 260 dynamics (52 per area)
 areasConfig.forEach((area) => {
   if (area.name === "Bônus") {
     bonusDynamics.forEach(d => {
       dynamics.push({ ...d, id: idCounter++ });
+      usedTitles.add(d.title);
     });
     return;
   }
@@ -635,44 +614,54 @@ areasConfig.forEach((area) => {
   if (area.name === "Vídeos") {
     videoDynamics.forEach(d => {
       dynamics.push({ ...d, id: idCounter++ });
+      usedTitles.add(d.title);
     });
     return;
   }
 
+  // Shuffle themes
+  let themes = [...area.themes];
+  for (let i = themes.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [themes[i], themes[j]] = [themes[j], themes[i]];
+  }
+
   for (let i = 0; i < 52; i++) {
-    const theme = getRandomItem(area.themes);
-    const verb = getRandomItem(actionVerbs);
-    const format = getRandomItem(formats);
-    const materials = getRandomItem(materialsPool);
-    const stepTemplate = getRandomItem(stepTemplates);
-    const overviewTemplate = getRandomItem(overviewTemplates);
-    const tip = getRandomItem(tipTemplates);
-    
-    const diffs = ["Iniciante", "Intermediário", "Avançado"];
-    const difficulty = diffs[Math.floor(rand() * 3)];
-    
-    const durations = ["10 min", "15 min", "20 min", "30 min"];
-    const duration = durations[Math.floor(rand() * 4)];
+    const theme = themes[i % themes.length] as string;
+    const concept = activityConcepts[i % activityConcepts.length];
+    const verb = getRandomItem(actionVerbs) as string;
+    const format = getRandomItem(formats) as string;
+    const difficulty = getRandomItem(difficulties) as string;
+    const duration = getRandomItem(durations) as string;
 
-    // Generate unique title
-    const titleAdjectives = ["Ativo", "Dinâmico", "em Foco", "na Prática", "Descomplicado", "Seguro", "Extremo", "Colaborativo", "Total", "Consciente", "Efetivo", "de Impacto", "Real", "Urgente", "Estratégico", "Prático", "Inovador"];
-    const titlePatterns = [
-      `${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)} ${getRandomItem(titleAdjectives)}`,
-      `Desafio: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Operação ${getRandomItem(titleAdjectives)}: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Protocolo ${getRandomItem(titleAdjectives)} - ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `${theme.charAt(0).toUpperCase() + theme.slice(1)}: Ação ${getRandomItem(titleAdjectives)}`,
-      `Missão ${getRandomItem(titleAdjectives)}: ${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Workshop ${getRandomItem(titleAdjectives)} sobre ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Laboratório de ${theme.charAt(0).toUpperCase() + theme.slice(1)} ${getRandomItem(titleAdjectives)}`,
-      `Circuito ${getRandomItem(titleAdjectives)} de ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Radar ${getRandomItem(titleAdjectives)}: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`
+    // Title generation focused on being conceptually unique
+    let title = "";
+    const nameVariations = [
+      `${concept.name} ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)} Estrita`,
+      `Foco: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Protocolo ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Ação Direta: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `Radar de ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
+      `O Código ${theme.split(' ')[0].toUpperCase()} de Segurança`
     ];
-    const title = getRandomItem(titlePatterns);
-
-    const focus = `Desenvolver habilidades de ${verb.toLowerCase()} em situações de ${theme}.`;
     
-    const overview = overviewTemplate(verb, theme, format);
+    let titleAttempt = 0;
+    do {
+      title = getRandomItem(nameVariations) as string;
+      if (usedTitles.has(title)) {
+        title += ` ${Math.floor(rand() * 100)}`; // Fallback for uniqueness
+      }
+      titleAttempt++;
+    } while (usedTitles.has(title) && titleAttempt < 10);
+    
+    usedTitles.add(title);
+
+    const focus = `Garantir que todos saibam como lidar com ${theme} através da lógica de ${concept.name.toLowerCase()}.`;
+    const overview = `Esta dinâmica utiliza o conceito ${concept.name} para ${verb.toLowerCase()} o conhecimento da equipe sobre ${theme}. ${concept.logic}`;
+    const steps = concept.steps(theme, format);
+    const tip = getRandomItem(tipTemplates) as string;
+    const materials = getRandomItem(materialsPool) as string[];
 
     dynamics.push({
       id: idCounter++,
@@ -684,7 +673,7 @@ areasConfig.forEach((area) => {
       focus,
       materials,
       overview,
-      steps: stepTemplate(theme, format),
+      steps,
       tip
     });
   }
