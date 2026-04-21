@@ -40,6 +40,82 @@ const areasConfig = [
 
 const bonusDynamics: Omit<Dynamic, 'id'>[] = [
   {
+    title: "Certificado de Conclusão",
+    area: "Bônus",
+    icon: "🎓",
+    difficulty: "Iniciante",
+    duration: "1 min",
+    focus: "Formalização da participação no treinamento.",
+    materials: ["Impressora", "Papel de alta gramatura"],
+    overview: "Modelo oficial de certificado para ser entregue aos participantes após a conclusão bem-sucedida das atividades de SST.",
+    steps: [
+      "Acesse o modelo pelo link abaixo.",
+      "Preencha os campos de nome, data e carga horária.",
+      "Imprima e assine como instrutor.",
+      "Entregue em uma pequena cerimônia de encerramento."
+    ],
+    tip: "O certificado físico gera orgulho e valorização profissional imediata.",
+    externalLink: "https://drive.google.com/file/d/1hQijZ1RGBBP1KiRDGxMcSV-PIRkiyZeo/view?usp=sharing"
+  },
+  {
+    title: "Quiz Interativo SST",
+    area: "Bônus",
+    icon: "💡",
+    difficulty: "Variada",
+    duration: "20 min",
+    focus: "Testar conhecimentos de forma lúdica e competitiva.",
+    materials: ["Projetor ou cartões impressos"],
+    overview: "Um desafio de 20 perguntas rápidas com curiosidades e regras essenciais de SST para engajar sua equipe.",
+    steps: [
+      "Divida os participantes em dois grupos.",
+      "Apresente a pergunta e dê 30 segundos para resposta.",
+      "O grupo que acertar ganha 10 pontos.",
+      "Ao final, o grupo com mais pontos recebe um brinde.",
+      "Use as respostas para reforçar os conceitos técnicos."
+    ],
+    tip: "Mantenha o clima leve e divertido, focando no aprendizado e não na punição por erro.",
+    subItems: [
+      { title: "Pergunta 1", focus: "Quiz", materials: [], overview: "O capacete de segurança tem validade?", steps: ["Sim. Geralmente 5 anos para o casco, mas deve ser trocado se houver impacto."], tip: "Confira sempre o selo do Inmetro.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 2", focus: "Quiz", materials: [], overview: "Posso usar adornos (anéis, relógios) em áreas elétricas?", steps: ["Não. Metais são condutores e aumentam o risco de arco elétrico e choque."], tip: "Adorno zero é regra de ouro.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 3", focus: "Quiz", materials: [], overview: "O que significa EPC?", steps: ["Equipamento de Proteção Coletiva. Protege todos ao mesmo tempo."], tip: "EPC sempre vem antes do EPI.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 4", focus: "Quiz", materials: [], overview: "Quem deve usar o cinto de segurança em altura?", steps: ["Qualquer pessoa trabalhando acima de 2 metros de altura."], tip: "Ancoragem correta salva vidas.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 5", focus: "Quiz", materials: [], overview: "Qual a cor da placa de 'Aviso'?", steps: ["Amarela. Indica cuidado ou atenção."], tip: "Atenção às cores de segurança.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 6", focus: "Quiz", materials: [], overview: "O protetor auricular protege contra o quê?", steps: ["Ruídos excessivos que podem causar surdez."], tip: "Use corretamente para vedar o som.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 7", focus: "Quiz", materials: [], overview: "O que é um 'quase-acidente'?", steps: ["Uma situação onde por pouco não ocorreu uma lesão ou dano."], tip: "Relate o quase-acidente para evitar o acidente.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 8", focus: "Quiz", materials: [], overview: "Onde fica o ponto de encontro da empresa?", steps: ["Local seguro definido no plano de emergência."], tip: "Saiba sua rota de fuga.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 9", focus: "Quiz", materials: [], overview: "O que significa a sigla DDS?", steps: ["Diálogo Diário de Segurança. Uma conversa rápida sobre prevenção antes do trabalho."], tip: "O DDS deve ser breve e focado.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 10", focus: "Quiz", materials: [], overview: "Qual extintor usar em equipamentos elétricos?", steps: ["CO2 ou Pó Químico (PQS). Nunca água."], tip: "Água conduz eletricidade.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 11", focus: "Quiz", materials: [], overview: "Quem deve assinar a ficha de EPI?", steps: ["O funcionário que recebeu o equipamento."], tip: "É sua garantia jurídica.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 12", focus: "Quiz", materials: [], overview: "Para que serve a CIPA?", steps: ["Para observar condições de risco e prevenir acidentes."], tip: "A CIPA ajuda o funcionário.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 13", focus: "Quiz", materials: [], overview: "O que fazer se vir uma ferramenta quebrada?", steps: ["Não usar, sinalizar e levar para manutenção."], tip: "Ferramenta ruim causa acidente.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 14", focus: "Quiz", materials: [], overview: "Qual a distância segura de uma rede elétrica?", steps: ["Depende da tensão, mas sempre mantenha o máximo de distância possível."], tip: "Eletricidade não avisa.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 15", focus: "Quiz", materials: [], overview: "Óculos de sol servem como EPI?", steps: ["Não, a menos que tenham CA e proteção contra impactos."], tip: "Use apenas EPIs homologados.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 16", focus: "Quiz", materials: [], overview: "O que é Ergonomia?", steps: ["Adaptação das condições de trabalho às características do homem."], tip: "Postura correta evita dores.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 17", focus: "Quiz", materials: [], overview: "Pode improvisar uma ferramenta?", steps: ["Jamais. Use sempre a ferramenta certa para a tarefa certa."], tip: "Gambiarras matam.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 18", focus: "Quiz", materials: [], overview: "Qual a importância de lavar as mãos no trabalho?", steps: ["Evitar contaminação por agentes biológicos ou químicos."], tip: "Higiene é segurança.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 19", focus: "Quiz", materials: [], overview: "O que fazer em caso de princípio de incêndio?", steps: ["Acionar o alarme, chamar a brigada e usar o extintor se souber."], tip: "Mantenha a calma.", icon: "❓", difficulty: "Iniciante", duration: "1 min" },
+      { title: "Pergunta 20", focus: "Quiz", materials: [], overview: "Quem é o responsável pela sua segurança?", steps: ["Você primeiro, e depois a empresa e seus colegas."], tip: "Segurança é responsabilidade de todos.", icon: "❓", difficulty: "Iniciante", duration: "1 min" }
+    ]
+  },
+  {
+    title: "Cartazes Prontos de Segurança",
+    area: "Bônus",
+    icon: "🖼️",
+    difficulty: "Iniciante",
+    duration: "Variada",
+    focus: "Comunicação visual e conscientização no ambiente de trabalho.",
+    materials: ["Impressora", "Papel A3 ou A4"],
+    overview: "Acesso a um acervo de cartazes educativos prontos para imprimir e fixar nos murais da empresa.",
+    steps: [
+      "Acesse o portal de cartazes pelo link.",
+      "Escolha o tema pertinente ao seu setor.",
+      "Faça o download e imprima.",
+      "Fixe em locais de grande visibilidade."
+    ],
+    tip: "Troque os cartazes mensalmente para evitar que a equipe 'pare de vê-los'.",
+    externalLink: "https://seconci.rio/cartazes-de-seguranca/"
+  },
+  {
     title: "+15 Jogos e Simulações de Segurança",
     area: "Bônus",
     icon: "🎮",
@@ -310,7 +386,7 @@ const bonusDynamics: Omit<Dynamic, 'id'>[] = [
       "Caso algo esteja irregular, interrompa a atividade até a correção.",
       "Assine e arquive o documento para controle."
     ],
-    tip: "O checklist deve ser rápido e objetivo para não se tornar uma tarefa burocrática cansativa.",
+    tip: "O checklist deve be rápido e objetivo para não se tornar uma tarefa burocrática cansativa.",
     externalLink: "https://drive.google.com/file/d/1qdY5UQDlZwXE1fAjw7mX3zeRd0AC9XeV/view?usp=sharing"
   },
   {
@@ -438,7 +514,7 @@ const bonusDynamics: Omit<Dynamic, 'id'>[] = [
         difficulty: "Intermediário",
         duration: "5 min",
         focus: "Intoxicação/Queimadura.",
-        materials: ["Foto de garrafa PET com líquido azul"],
+        materials: ["Foto de garrafa PET with líquido azul"],
         overview: "Solvente armazenado em garrafa de refrigerante.",
         steps: ["Identificar conteúdo", "Rotular corretamente", "Descartar PET"],
         tip: "Nunca use embalagens de alimentos para químicos."
@@ -460,7 +536,7 @@ const bonusDynamics: Omit<Dynamic, 'id'>[] = [
 
 const actionVerbs = [
   "Analisar", "Inspecionar", "Mapear", "Distinguir", "Estruturar",
-  "Corrigir", "Mitigar", "Comunicar", "Auditar", "Testar", "Sinalizar", "Escalar", "Previnir",
+  "Corrigir", "Mitigar", "Comunicar", "Auditar", "Testar", "Sinalizar", "Escalar", "Prevenir",
   "Relatar", "Antecipar", "Neutralizar", "Engajar", "Reconhecer", "Avaliar", "Diagnosticar", 
   "Prever", "Intervir", "Reforçar", "Executar", "Validar", "Questionar", "Sugerir", "Implementar"
 ];
@@ -678,4 +754,3 @@ areasConfig.forEach((area) => {
     });
   }
 });
-

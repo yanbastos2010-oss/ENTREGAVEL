@@ -113,6 +113,25 @@ export function Modal({ dynamic, onClose }: ModalProps) {
               </div>
 
               <div className="space-y-10">
+                {dynamic.materials && dynamic.materials.length > 0 && (
+                  <section>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200">
+                        <Package className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-display font-black text-slate-900 tracking-tight">Materiais Necessários</h3>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {dynamic.materials.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-xl shadow-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                          <span className="font-bold text-slate-700 text-sm">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
                 {dynamic.subItems && (
                       <section>
                         <div className="flex items-center gap-3 mb-4">
@@ -163,6 +182,18 @@ export function Modal({ dynamic, onClose }: ModalProps) {
                                   <span className="text-[9px] font-black text-emerald-700 uppercase tracking-widest block mb-1">Dica</span>
                                   <p className="text-xs text-emerald-800 font-bold italic">"{item.tip}"</p>
                                 </div>
+                                <div className="pt-4 border-t border-slate-50">
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      downloadDynamicPDF({ ...item, area: dynamic.area, id: dynamic.id });
+                                    }}
+                                    className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-all duration-300 font-bold text-xs shadow-sm hover:shadow-md active:scale-95"
+                                  >
+                                    <Download className="w-3.5 h-3.5" />
+                                    BAIXAR EM PDF
+                                  </button>
+                                </div>
                               </div>
                             </details>
                           ))}
@@ -172,23 +203,6 @@ export function Modal({ dynamic, onClose }: ModalProps) {
 
                     {!dynamic.subItems && (
                       <>
-                        <section>
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200">
-                              <Package className="w-5 h-5 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-display font-black text-slate-900 tracking-tight">Materiais</h3>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {dynamic.materials.map((item, idx) => (
-                              <div key={idx} className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-xl shadow-sm">
-                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                                <span className="font-bold text-slate-700 text-sm">{item}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </section>
-
                         <section>
                           <div className="flex items-center gap-3 mb-4">
                             <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200">
