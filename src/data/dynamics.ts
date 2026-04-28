@@ -12,20 +12,46 @@ export interface Dynamic {
   tip: string;
   subItems?: Omit<Dynamic, 'id' | 'area'>[];
   externalLink?: string;
+  youtubeId?: string;
+  isShort?: boolean;
 }
 
-const videoDynamics: Omit<Dynamic, 'id'>[] = Array.from({ length: 20 }, (_, i) => ({
-  title: `Vídeo ${i + 1}`,
+const rawVideoData = [
+  { id: "CtOMlB4uJi8", isShort: false, title: "Dinâmica DDS 1" },
+  { id: "_tJpkT8dXwo", isShort: false, title: "Dinâmica DDS 2" },
+  { id: "kIr5TWymGJA", isShort: false, title: "Dinâmica DDS 3" },
+  { id: "ebogPAlag1k", isShort: true, title: "Dinâmica DDS Curta" },
+  { id: "j5yaxPLscic", isShort: false, title: "Dinâmica DDS 5" },
+  { id: "D5GDh_bJ8-I", isShort: false, title: "Dinâmica DDS 6" },
+  { id: "l5UOtHY1C2E", isShort: false, title: "Dinâmica DDS 7" },
+  { id: "pBplx5Qa8js", isShort: false, title: "Dinâmica DDS 8" },
+  { id: "0bp5Z-eQJIk", isShort: false, title: "Dinâmica DDS 9" },
+  { id: "1WcgipQiXe4", isShort: false, title: "Dinâmica DDS 10" },
+  { id: "HXQig30xHcw", isShort: false, title: "Dinâmica DDS 11" },
+  { id: "XC-VnIgM1nk", isShort: false, title: "Dinâmica DDS 12" },
+  { id: "z5ngw7H33iM", isShort: false, title: "Dinâmica DDS 13" },
+  { id: "zay-5Q5rCjA", isShort: false, title: "Dinâmica DDS 14" },
+  { id: "8mptbxYXhgU", isShort: false, title: "Dinâmica DDS 15" },
+  { id: "XGEi5lBdL5c", isShort: false, title: "DDS Diferente 1" },
+  { id: "hLaEcql4Rns", isShort: false, title: "DDS Diferente 2" },
+  { id: "_0ow79MqPj8", isShort: false, title: "DDS Diferente 3" },
+  { id: "JY_hn-1kDl4", isShort: false, title: "DDS Diferente 4" }
+];
+
+const videoDynamics: Omit<Dynamic, 'id'>[] = rawVideoData.map((v, index) => ({
+  title: `Vídeo ${index + 1}`,
   area: "Vídeos",
   icon: "🎬",
   difficulty: "Iniciante",
   duration: "Variada",
   focus: "Treinamento Visual",
   materials: [],
-  overview: "Carregando...",
-  steps: [],
-  tip: "Aguarde o carregamento do vídeo.",
-  subItems: undefined
+  overview: "Assista a este vídeo para ter insights incríveis sobre práticas e dinâmicas de segurança no trabalho.",
+  steps: ["Clique no play do vídeo para assistir.", "Tome notas dos principais aprendizados.", "Aplique em sua empresa com sua equipe."],
+  tip: "Preste atenção aos detalhes visuais e à interação da equipe no vídeo.",
+  subItems: undefined,
+  youtubeId: v.id,
+  isShort: v.isShort
 }));
 
 const areasConfig = [
@@ -650,8 +676,114 @@ const activityConcepts = [
       `Analise o que foi esquecido durante a pressão do cronômetro.`,
       `Reforce o checklist padrão da empresa para evitar omissões.`
     ]
+  },
+  {
+    name: "Caça ao Tesouro",
+    logic: "Gamificação espacial para fixação de conceitos através da busca ativa.",
+    steps: (t: string, f: string) => [
+      `Esconda 5 a 10 'pistas' ou cartões relacionados a ${t} pelo setor.`,
+      `Divida os participantes ${f} e dê a eles a primeira dica.`,
+      `A cada cartão encontrado, a equipe precisa responder uma questão técnica sobre ${t} para avançar.`,
+      `A primeira equipe a encontrar o 'tesouro' de segurança ganha um brinde.`,
+      `Reúna todos e repasse os erros e acertos de cada pista.`
+    ]
+  },
+  {
+    name: "O Advogado do Diabo",
+    logic: "Debate focado na defesa e quebra de paradigmas inseguros comuns.",
+    steps: (t: string, f: string) => [
+      `Apresente um argumento fortemente defendido (mas errado) sobre ${t} (ex: "é mais rápido fazer sem proteção").`,
+      `Escolha um participante ${f} para agir como o 'Advogado do Diabo' e defender essa tese absurda.`,
+      `O restante do grupo deve contra-argumentar usando procedimentos e bom senso de forma construtiva.`,
+      `Deixe o debate fluir até que os argumentos da equipe derrubem completamente a desculpa inicial.`,
+      `Conclua mostrando que todas as desculpas para burlar a segurança são, no fundo, frágeis.`
+    ]
+  },
+  {
+    name: "Checklist às Cegas",
+    logic: "Aumento da percepção visual e quebra do modo automático na rotina.",
+    steps: (t: string, f: string) => [
+      `Leve os colaboradores para um equipamento/área relacionado a ${t}.`,
+      `Peça que eles fechem os olhos ou usem vendas (em local seguro!).`,
+      `O facilitador altera sutilmente uma condição do ambiente (ex: tira um EPI do lugar, abre uma válvula).`,
+      `Com os olhos abertos, os participantes ${f} têm 30 segundos para identificar o que mudou.`,
+      `Discuta como a rotina cega nossa capacidade de ver discrepâncias de segurança.`
+    ]
+  },
+  {
+    name: "Role-Play Reverso",
+    logic: "Desenvolvimento de empatia e entendimento dos desafios de cada função.",
+    steps: (t: string, f: string) => [
+      `Escolha dois colaboradores que atuam com ${t}.`,
+      `Um assume o papel do líder/Técnico de Segurança e o outro do operador resistente.`,
+      `Eles encenam um diálogo de feedback sobre um comportamento inseguro.`,
+      `Após 3 minutos, inverta os papéis ou chame a equipe ${f} para sugerir argumentos.`,
+      `Discuta a abordagem: o que gerou resistência e o que gerou colaboração?`
+    ]
+  },
+  {
+    name: "Construção Coletiva",
+    logic: "Criação de senso de pertencimento e autoria sobre as regras de segurança.",
+    steps: (t: string, f: string) => [
+      `Apresente uma tarefa em branco no quadro branco sobre ${t}.`,
+      `Peça que os participantes ${f} construam, passo a passo, o procedimento 100% seguro.`,
+      `O facilitador anota tudo o que falam, sem corrigir imediatamente.`,
+      `Ao final, cruze as informações da equipe com a Norma Regulamentadora oficial.`,
+      `Elogie os pontos de concordância e reforce as etapas que foram esquecidas.`
+    ]
+  },
+  {
+    name: "Máquina do Tempo",
+    logic: "Análise retrospectiva (Causa Raiz) baseada na metodologia de Ishikawa (Espinha de Peixe).",
+    steps: (t: string, f: string) => [
+      `Conte a história de um acidente grave envolvendo ${t} que "acabou de acontecer".`,
+      `Peça para o grupo "voltar no tempo" 1 hora antes e identificar o que poderia ter sido feito.`,
+      `Volte mais no tempo: 1 dia, 1 semana, 1 ano. Quais foram as falhas de treinamento, gestão ou equipamento?`,
+      `Mapeie as causas no quadro usando post-its.`,
+      `Traduza isso para ações imediatas no presente da empresa.`
+    ]
+  },
+  {
+    name: "Roleta de Cenários",
+    logic: "Agilidade mental e adaptação rápida a imprevistos de segurança.",
+    steps: (t: string, f: string) => [
+      `Crie uma roda improvisada ou use cartões sorteados com diferentes cenários de ${t}.`,
+      `Em times ${f}, gire a roleta. O time tem 1 minuto para dar a solução perfeita de segurança para o cenário sorteado.`,
+      `Insira variáveis caóticas ("E se estiver chovendo?", "E se a energia acabar?").`,
+      `A equipe ganha pontos baseados na viabilidade e segurança da resposta.`,
+      `Debata a melhor solução final em conjunto.`
+    ]
+  },
+  {
+    name: "Gincana dos 5S",
+    logic: "Aplicação prática dos sensos de organização como base fundamental para a segurança.",
+    steps: (t: string, f: string) => [
+      `Reúna a equipe no setor e defina o tema focal: ${t}.`,
+      `Dê a eles 10 minutos para descartar o inútil e organizar fisicamente o ambiente.`,
+      `Cada time ${f} deve apresentar o "Antes e Depois" fotográfico ou explicativo.`,
+      `Mostre a relação direta entre a desorganização que havia antes e o risco de acidente relacionado a ${t}.`,
+      `Estabeleça um cronograma de manutenção daquele padrão.`
+    ]
   }
 ];
+
+const titlePatterns = [
+  (c: string, t: string, v: string) => `Dinâmica: ${c} e ${t}`,
+  (c: string, t: string, v: string) => `${v} ${t} - Método ${c}`,
+  (c: string, t: string, v: string) => `Protocolo de ${c}: Foco em ${t}`,
+  (c: string, t: string, v: string) => `Simulação Prática: ${t}`,
+  (c: string, t: string, v: string) => `Ação: ${c} e ${t}`,
+  (c: string, t: string, v: string) => `Oficina: ${v} ${t}`,
+  (c: string, t: string, v: string) => `Radar SST: ${t} (${c})`,
+  (c: string, t: string, v: string) => `O Desafio de ${c} para ${t}`,
+  (c: string, t: string, v: string) => `Atividade Direta: ${t}`,
+  (c: string, t: string, v: string) => `Treinamento de Base: ${t}`,
+  (c: string, t: string, v: string) => `Foco Operacional: ${t} com ${c}`
+];
+
+function toTitleCase(str: string) {
+  return str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
 
 const durations = ["10 min", "15 min", "20 min", "25 min", "30 min"];
 const difficulties = ["Iniciante", "Intermediário", "Avançado"];
@@ -674,15 +806,12 @@ function getRandomItem<T>(arr: T[]): T {
   return arr[Math.floor(rand() * arr.length)];
 }
 
-const usedTitles = new Set<string>();
-
 let idCounter = 1;
 
 areasConfig.forEach((area) => {
   if (area.name === "Bônus") {
     bonusDynamics.forEach(d => {
       dynamics.push({ ...d, id: idCounter++ });
-      usedTitles.add(d.title);
     });
     return;
   }
@@ -690,7 +819,6 @@ areasConfig.forEach((area) => {
   if (area.name === "Vídeos") {
     videoDynamics.forEach(d => {
       dynamics.push({ ...d, id: idCounter++ });
-      usedTitles.add(d.title);
     });
     return;
   }
@@ -705,39 +833,23 @@ areasConfig.forEach((area) => {
   for (let i = 0; i < 52; i++) {
     const theme = themes[i % themes.length] as string;
     const concept = activityConcepts[i % activityConcepts.length];
-    const verb = getRandomItem(actionVerbs) as string;
-    const format = getRandomItem(formats) as string;
-    const difficulty = getRandomItem(difficulties) as string;
-    const duration = getRandomItem(durations) as string;
-
-    // Title generation focused on being conceptually unique
-    let title = "";
-    const nameVariations = [
-      `${concept.name} ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `${verb} ${theme.charAt(0).toUpperCase() + theme.slice(1)} Estrita`,
-      `Foco: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Protocolo ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Ação Direta: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `Radar de ${theme.charAt(0).toUpperCase() + theme.slice(1)}`,
-      `O Código ${theme.split(' ')[0].toUpperCase()} de Segurança`
-    ];
     
-    let titleAttempt = 0;
-    do {
-      title = getRandomItem(nameVariations) as string;
-      if (usedTitles.has(title)) {
-        title += ` ${Math.floor(rand() * 100)}`; // Fallback for uniqueness
-      }
-      titleAttempt++;
-    } while (usedTitles.has(title) && titleAttempt < 10);
-    
-    usedTitles.add(title);
+    // Deterministic selection ensures fully unique combinations and avoids random clashing
+    const verb = actionVerbs[(i * 3) % actionVerbs.length] as string;
+    const format = formats[(i * 7) % formats.length] as string;
+    const difficulty = difficulties[i % difficulties.length] as string;
+    const duration = durations[(i * 5) % durations.length] as string;
 
+    // Unique title generation
+    const themeName = toTitleCase(theme);
+    const pattern = titlePatterns[i % titlePatterns.length];
+    const title = pattern(concept.name, themeName, verb);
+    
     const focus = `Garantir que todos saibam como lidar com ${theme} através da lógica de ${concept.name.toLowerCase()}.`;
-    const overview = `Esta dinâmica utiliza o conceito ${concept.name} para ${verb.toLowerCase()} o conhecimento da equipe sobre ${theme}. ${concept.logic}`;
+    const overview = `Esta dinâmica utiliza o conceito "${concept.name}" para ${verb.toLowerCase()} o conhecimento da equipe sobre ${theme}. ${concept.logic}`;
     const steps = concept.steps(theme, format);
-    const tip = getRandomItem(tipTemplates) as string;
-    const materials = getRandomItem(materialsPool) as string[];
+    const tip = tipTemplates[(i * 11) % tipTemplates.length] as string;
+    const materials = materialsPool[(i * 13) % materialsPool.length] as string[];
 
     dynamics.push({
       id: idCounter++,

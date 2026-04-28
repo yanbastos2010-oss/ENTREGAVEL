@@ -44,14 +44,6 @@ export function Modal({ dynamic, onClose }: ModalProps) {
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </a>
             </div>
-          ) : dynamic.area === "Vídeos" ? (
-            <div className="flex flex-col items-center justify-center space-y-6 py-10">
-              <div className="aspect-[9/16] w-full max-w-[300px] bg-black rounded-3xl shadow-2xl flex flex-col items-center justify-center relative overflow-hidden border-4 border-slate-800">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/20 to-slate-900/40"></div>
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500 mb-4"></div>
-                <span className="text-white font-display font-black tracking-widest uppercase text-xs animate-pulse">Carregando...</span>
-              </div>
-            </div>
           ) : (
             <>
               <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
@@ -77,6 +69,22 @@ export function Modal({ dynamic, onClose }: ModalProps) {
                   </h2>
                 </div>
               </div>
+
+              {dynamic.youtubeId && (
+                <div className="flex flex-col items-center justify-center mb-8 w-full">
+                  <div className={`w-full relative rounded-3xl shadow-2xl overflow-hidden bg-black border-4 border-slate-800 ${dynamic.isShort ? 'aspect-[9/16] max-w-[350px]' : 'aspect-video'}`}>
+                    <iframe 
+                      className="absolute top-0 left-0 w-full h-full"
+                      src={`https://www.youtube.com/embed/${dynamic.youtubeId}?autoplay=1`} 
+                      title={dynamic.title} 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      referrerPolicy="strict-origin-when-cross-origin" 
+                      allowFullScreen>
+                    </iframe>
+                  </div>
+                </div>
+              )}
 
               {dynamic.area !== "Vídeos" && (
                 <button 
